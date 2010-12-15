@@ -10,13 +10,20 @@
 
  - Installation des équipements audiovisuels tels que mélangeur, voie de commande, caméra, régie.
  - Compétences en informatique et réseau:
-   - Développement de site HTML, jQuery.
+   - Développement de site Backend/frontend PHP, HTML, jQuery.
    - Intégration en CSS/CSS3 responsive en LESS.
    - Design infographie avec Adobe Photoshop.
    - Montage virtuel avec Adobe Première.
    
 ## EXPÉRIENCES PROFESSIONNELLES:
 
+ - CDI de 4 ans pour un poste de [Webmaster pour la société V.com](experiences/02-v.communications.md) comprenant:
+   - Dépôt, gestion et hébergement d’une quarantaine de sites/domaines web sur 4 serveurs dédiés.
+   - Création de design/charte graphique.
+   - Intégration de sites avec CSS/CSS2.
+   - Développement complet utilisant PHP4/PHP5, HTML, XML/XSLT et JavaScript.
+   - Capture, traitement et mise en ligne de contenu multimédia type photos, vidéos streaming, vidéos live.
+   - Maintenance du parc informatique (Windows 2K, XP, 7).
  - Technicien exploitation vidéo pour la société des courses de Reims : Opérateur magnéto dans le secteur d’enregistrement et diffusion pour les commissaires de course.
  - Prestation audiovisuelle avec Alsace Audiovisuel (AAV) :
  - Couverture du marathon de REIMS (51) de 2004 à 2008 avec un plateau multi caméra ainsi que des caméras dispersées dans toute la ville pour une retransmission en direct.
