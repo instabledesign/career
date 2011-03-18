@@ -2,6 +2,8 @@
 
 ## FORMATIONS:
 
+[`Formation XML/XSL-T`](formations/04-xsl.md)
+
 [`Formation ZEND Expert PHP 5.`](formations/03-php-expert.md)
 
 [`BTS audiovisuel option techniques d'ingénierie et exploitation des supports`, au lycée Saint Jean-Baptiste de la salle (51 Reims).](formations/02-bts.md)
