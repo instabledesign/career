@@ -37,3 +37,6 @@ Modules transversaux
 > Projets applicatifs : réaliser une application répondant à un besoin client
 > Periode en entreprise
 > Épreuve finale, jury et validation
+
+Obtention des certifications Certificats CISCO CCNA Discovery 1, 2, 3 et 4 (VOIP).
+Obtention Titre RNCP Niveau III validé par le ministère du travail, Technicien supérieur Réseaux informatiques et télécommunication.
