@@ -2,6 +2,8 @@
 
 ## FORMATIONS:
 
+[`Certificats CISCO CCNA Discovery 1, 2, 3 et 4 (VOIP).`](formations/05-reseaux-informatique-telecom.md)
+
 [`Formation XML/XSL-T`](formations/04-xsl.md)
 
 [`Formation ZEND Expert PHP 5.`](formations/03-php-expert.md)
