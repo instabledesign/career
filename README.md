@@ -2,6 +2,10 @@
 
 ## FORMATIONS:
 
+[`Technicien supérieur Réseaux informatiques et télécommunication. Titre RNCP Niveau III validé par le ministère du travail.`](formations/05-reseaux-informatique-telecom.md)
+
+[`Certificats CISCO CCNA Discovery 1, 2, 3 et 4 (VOIP).`](formations/05-reseaux-informatique-telecom.md)
+
 [`Formation XML/XSL-T`](formations/04-xsl.md)
 
 [`Formation ZEND Expert PHP 5.`](formations/03-php-expert.md)
@@ -16,6 +20,9 @@
  - Compétences en informatique et réseau:
    - Développement de site Backend/frontend PHP, HTML, jQuery.
    - Intégration en CSS/CSS3 responsive en LESS.
+   - Installation et administration de serveur sur Windows 2x et Linux (CentOS Debian...) y compris les serveurs virtualisés (VMware) via ligne de commande ou GUI.
+   - Configuration de routeur (Cisco), switch, DNS, DHCP, FTP
+   - Bonne connaissance de TCP/IP modèle OSI, infrastructure réseau wifi et filaire.
    - Design infographie avec Adobe Photoshop.
    - Montage virtuel avec Adobe Première.
    
