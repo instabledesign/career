@@ -60,3 +60,27 @@ traders, ainsi que le développement du client d’appel ainsi que la mise en pl
 unitaire assez complexe.
 
 Fin de fonction le `2014-12-31T18:00:00+0100`.
+
+### Mission Allocine
+
+Prise de fonction en tant que développeur/concepteur Symfony2 le `2015-05-04T09:00:00+0200`.
+
+Equipe: 
+
+ - 1 chef de projet
+ - 1 Architect SensioLabs
+ - 2 développeurs SensioLabs
+ - 1 Database Admin
+
+Environnement technique:
+
+ - PHP 5.6 / PHP 7 beta, PHPunit
+ - Symfony2.7
+ - Doctrine2
+ - PostgreSQL
+ 
+Mission:
+
+ - Mise en place de symfony (config, routing, services)
+ - Mise en place d’un multi site (multi config, langue, env...)
+ - Utilisation de l’expression language pour la mise en place d’un système permettant au SEO de surcharger les informations du modèle en fonction de multiple critère (local, url, querystring), développement de helper Twig.
