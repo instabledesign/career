@@ -28,6 +28,12 @@
    
 ## EXPÉRIENCES PROFESSIONNELLES:
 
+ - CDI de 2 ans et 4 mois en tant que développeur/programmeur pour la société Isics comprenant:
+   - Utilisation d’outils tels que GIT, npm/grunt/bower, Vagrant, ainsi que la méthode agile
+   - Développeur  sur Drupal (cd08.fr, ...) Symfony1 (legales-online.fr, ...) Symfony2 (1001trails.com, ...)
+   - Intégration responsive en CSS/CSS3 LESS.   
+   - Mission de 2 mois chez BourseDirect sur la refonte Symfony2 pour le compte de SensioLabs.
+   - Mission de 3 mois chez Webedia (allocine.fr) sur la refonte Symfony2 pour le compte de SensioLabs.
  - CDI de 4 ans pour un poste de [Webmaster pour la société V.com](experiences/02-v.communications.md) comprenant:
    - Dépôt, gestion et hébergement d’une quarantaine de sites/domaines web sur 4 serveurs dédiés.
    - Création de design/charte graphique.
