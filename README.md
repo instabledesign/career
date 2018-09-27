@@ -2,6 +2,8 @@
 
 ## FORMATIONS:
 
+[`Formation ZEND Expert PHP 5.`](formations/03-php-expert.md)
+
 [`BTS audiovisuel option techniques d'ingénierie et exploitation des supports`, au lycée Saint Jean-Baptiste de la salle (51 Reims).](formations/02-bts.md)
 
 [`Baccalauréat STI Génie électronique` au lycée François BAZIN (08 Charleville-Mézières).](formations/01-baccalaureat.md)
