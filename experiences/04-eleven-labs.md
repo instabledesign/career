@@ -99,3 +99,25 @@ Développer et maintenir l'ensemble des applications et microservices de ETSGlob
  - Remise à plat de tous les logs applicatifs avec Monolog (gelfhandler, ELK) avec l'ajout et la normalisation du contexte pour avoir des informations utiles et exploitables.
 
 Fin de fonction le `2018-12-31T18:00:00+0100`.
+
+## Mission ETF1 / TF1 (plateforme MyTF1 / TF1+)
+
+Prise de fonction en tant que développeur/concepteur backend Go (full stack) le `2019-01-04T09:00:00+0100`.
+
+Equipe: 
+
+ - équipe plateforme backend TF1 (monorepo partagé, plusieurs dizaines de contributeurs)
+
+Environnement technique:
+
+ - Go (monorepo de microservices), TypeScript/React (fronts d'administration)
+ - gRPC / Protobuf, REST, GraphQL (persisted queries)
+ - Redis, Elasticsearch, DynamoDB, MongoDB, S3
+ - AWS Cognito, Gigya, JWT/JWKS, OAuth2 (Orange, SFR, Bytel)
+ - libvips, OpenCV/pigo (détection de zones d'intérêt)
+ - OpenTelemetry, Datadog, Prometheus
+ - Bazel, Docker (Alpine), Nix, vendoring Go
+
+Mission:
+
+Développement et maintenance des microservices de la plateforme alimentant MyTF1, TFOUMAX puis TF1+ (environ 820 commits, 2019-2023):
