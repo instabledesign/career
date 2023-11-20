@@ -156,3 +156,27 @@ Développement et maintenance des microservices de la plateforme alimentant MyTF
    - Tests fonctionnels user-api (`2023-09-22` → `2023-11-07`): device token, pair flow, Orange, Bytel, Gigya, IPTV; tests unitaires des clients Bytel et Orange.
 
 Fin de fonction le `2023-11-07T18:00:00+0100` (date du dernier commit).
+
+## Mission France Télévision (Video Factory et Tops)
+
+Prise de fonction en tant que développeur/concepteur full stack le `2023-11-20T09:00:00+0100`.
+
+Equipe: 
+
+ - 5 développeurs back
+ - 2 développeurs front
+ - 2 lead développeurs
+ - 5 PO
+ - 1 QA
+
+Environnement technique:
+
+ - PHP 8.1 → 8.3, Symfony 5.4 → 6.4 / 7, Doctrine, Messenger
+ - MariaDB 10.3 → 11, MongoDB 5 → 7, RabbitMQ, OpenSearch
+ - JavaScript (Gulp → Rollup/Vite, ESLint)
+ - Docker (multi-architecture, buildx), GitLab CI, Makefile
+ - Monolog, New Relic, DORA
+
+Mission:
+
+Évolution et modernisation des applications Video Factory et Tops (environ 250 commits répartis sur 35 dépôts):
