@@ -156,3 +156,65 @@ Développement et maintenance des microservices de la plateforme alimentant MyTF
    - Tests fonctionnels user-api (`2023-09-22` → `2023-11-07`): device token, pair flow, Orange, Bytel, Gigya, IPTV; tests unitaires des clients Bytel et Orange.
 
 Fin de fonction le `2023-11-07T18:00:00+0100` (date du dernier commit).
+
+## Mission France Télévision (Video Factory et Tops)
+
+Prise de fonction en tant que développeur/concepteur full stack le `2023-11-20T09:00:00+0100`.
+
+Equipe: 
+
+ - 5 développeurs back
+ - 2 développeurs front
+ - 2 lead développeurs
+ - 5 PO
+ - 1 QA
+
+Environnement technique:
+
+ - PHP 8.1 → 8.3, Symfony 5.4 → 6.4 / 7, Doctrine, Messenger
+ - MariaDB 10.3 → 11, MongoDB 5 → 7, RabbitMQ, OpenSearch
+ - JavaScript (Gulp → Rollup/Vite, ESLint)
+ - Docker (multi-architecture, buildx), GitLab CI, Makefile
+ - Monolog, New Relic, DORA
+
+Mission:
+
+Évolution et modernisation des applications Video Factory et Tops (environ 250 commits répartis sur 35 dépôts):
+
+ - **Novembre 2023 – mars 2024**
+   - Endpoint `/player-orange` pour Orange TV Everywhere (`2023-12-14`).
+   - Tests fonctionnels du `ReplayJob` avec mock du client Zencoder (`2023-11-23` / `2024-03-01`).
+   - Nettoyage PHP de la gateway (`2024-02-13`), ajout de l'ID de programme Plurimédia sur les vidéos (`2024-03-26`).
+ - **Avril – juin 2024**
+   - Synchronisation des files, exchanges et bindings RabbitMQ depuis la production (`2024-04-17`).
+   - Mise à jour de la purge AWS (`2024-04-15`), passage de `media` à MongoDB 5 (`2024-05-24`).
+   - Catégories vidéo et purge des groupes vides (`2024-05-06` / `2024-05-23`).
+   - Tops: preview agrandie (`2024-04-02`), correction de la fuite mémoire de la liste des diffusions (`2024-06-19`).
+   - Images PHP 8.2 puis 8.3 (`2024-06-24` / `2024-06-25`).
+   - `messenger-bundle`: tests unitaires, compatibilité Symfony 6/7, CI PHP 8.1 à 8.3 (`2024-06-14` → `2024-06-25`).
+   - Identifiants Disney dans factory (`2024-06-27`).
+ - **Juillet – août 2024**
+   - Amélioration de l'ergonomie de la page de détail Tops (`2024-07-23` / `2024-07-26`).
+   - Passage de `metas` à Symfony 6.4 (`2024-07-02`) et PHPUnit 10 (`2024-06-04`).
+ - **Septembre 2024 — normalisation de l'infrastructure** (64 commits)
+   - Normalisation de la construction et du tag des images Docker (mariadb, rabbitmq, php, node, varnish, mongodb, ftpd) le `2024-09-06`, puis dans une vingtaine de projets le `2024-09-09`.
+   - Nouvelle image MariaDB nettoyée (`2024-09-10`), suppression de la base legacy (`2024-09-11`).
+   - Node 20 (`2024-09-06`), MongoDB 7 (`2024-09-24`), images multi-architecture ARM avec buildx (`2024-09-25`).
+   - Externalisation du chemin des images dans `integration` (`2024-09-06`).
+ - **Octobre – novembre 2024**
+   - sIDCase sur les tops et règles de matching début/fin (`2024-10-11`).
+   - Analyse et suppression des dépendances inutilisées, normalisation de 114 fichiers (`2024-10-16` / `2024-11-06`).
+   - Déploiement mesuré DORA (`2024-11-13` → `2024-12-05`).
+   - Correction du filtre prior (`2024-11-19`), suppression du code mort et du bouton Pluzz cassé (`2024-11-21`).
+ - **Décembre 2024 – janvier 2025**
+   - Logs vers OpenSearch sur 13 services au format Logstash FTV (`2024-12-05` → `2024-12-24`), nouveau `tool-bundle` Monolog (`2024-12-04`).
+   - Débrayage Top v1/v2 par chaîne (`2024-12-10` / `2025-01-08`).
+   - Correction d'alignement HTML (`2025-01-09`).
+   - Retrait de New Relic des services (`2025-01-29`).
+ - **Février – avril 2025**
+   - Règles de consolidation des tops (`2025-02-21`, `2025-02-25`, `2025-03-14`, `2025-03-24`).
+   - Refonte de Tops: suppression du bundle KLX (`2025-02-28`), normalisation du routing, des endpoints et des entités (`2025-04-08` → `2025-04-14`).
+   - Réactivation de New Relic sur la gateway (`2025-02-27`), configuration ekino (`2025-03-12`).
+   - `mongodb-bundle`: compatibilité avec l'extension MongoDB 2.0 (`2025-04-29` / `2025-04-30`).
+
+Fin de fonction le `2025-04-30T18:00:00+0200` (date du dernier commit).

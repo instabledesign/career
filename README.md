@@ -33,6 +33,7 @@
    - Mission de 8 mois chez France Télévision pour une refonte d'un monolith en microservices (vidéo factory).
    - Mission ETSGlobal Europe pour le développement et maintenance des applications et microservices (de 2017-06 à 2018-12)
    - Mission de 4 ans et 10 mois chez ETF1/TF1 (de 2019-01 à 2023-11) en tant que développeur backend Go sur la plateforme MyTF1/TF1+: reco-top, authentification Cognito/JWKS/Gigya, user-api, overlays et traitement d'images, Livelike.
+   - Mission de 17 mois chez France Télévision (de 2023-11 à 2025-04) en tant que développeur full stack PHP/Symfony: modernisation (PHP 8.3, Symfony 6.4/7), normalisation Docker/CI, logs OpenSearch, DORA, refonte de l'application Tops.
  - CDI de 2 ans et 4 mois en tant que développeur/programmeur pour la société Isics comprenant:
    - Utilisation d’outils tels que GIT, npm/grunt/bower, Vagrant, ainsi que la méthode agile
    - Développeur  sur Drupal (cd08.fr, ...) Symfony1 (legales-online.fr, ...) Symfony2 (1001trails.com, ...)
