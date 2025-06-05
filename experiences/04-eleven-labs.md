@@ -218,3 +218,64 @@ Mission:
    - `mongodb-bundle`: compatibilité avec l'extension MongoDB 2.0 (`2025-04-29` / `2025-04-30`).
 
 Fin de fonction le `2025-04-30T18:00:00+0200` (date du dernier commit).
+
+## Mission Believe (Contracts & Accounts Management)
+
+Prise de fonction en tant que développeur back-end PHP/Symfony le `2025-06-05T09:00:00+0200` (date du premier commit).
+
+Mission en cours au `2026-11-17`.
+
+Equipe: 
+
+ - 3 développeurs back-end (dont moi)
+ - 2 développeurs front-end
+ - 1 lead dev
+ - 1 PO
+ - 1 Engineering Manager
+ - 1 Product Manager
+
+Environnement technique:
+
+ - PHP 8.4 → 8.5, FrankenPHP, Symfony 7.3 → 7.4 LTS (8.1 sur les nouvelles applications), API Platform 3/4, Messenger, Workflow, Twig, Symfony UX
+ - MySQL 8.4, Doctrine ORM 3, Redis, Liquibase
+ - Kafka, outbox transactionnelle, Debezium, AsyncAPI
+ - Auth0, Okta (OAuth2/OIDC), JWT/JWKS, API Gateway KrakenD, Vault
+ - OpenTelemetry, Monolog JSON
+ - GitLab CI (building blocks), Argo CD, Kubernetes (GCP), Docker, Renovate
+ - PHPUnit 11 → 13, PHPStan, SonarQube, Aikido, Bruno
+ - Backstage (TechDocs), MkDocs
+
+Mission:
+
+Développement de la plateforme **Ithaca** (nouvelle plateforme Contrats & Comptes) et des sujets de sécurité et de run associés (815 commits uniques sur 36 dépôts, 92 tickets Jira terminés sur 103 assignés):
+
+ - **Juin – juillet 2025 — prise en main**
+   - Chiffrement des mots de passe FTP, OpenAPI dans la console interne, spike Liquibase, table des commissions.
+ - **Septembre – octobre 2025 — contrats d'interface et nettoyage des ressources**
+   - Génération Swagger et 8 contrats d'interface API avec mocks pour une intégration front précoce, table des seuils.
+   - Nettoyage et normalisation des ressources Account, Contract, Deduction, Reserve, Advance.
+ - **Novembre – décembre 2025 — référentiels et sécurité**
+   - Accounts Reference API : types d'avance, d'échéance, de déduction, de commission, Business Unit, business line sur les contrats.
+   - Mise en place d'Auth0 et de l'API Gateway KrakenD.
+   - Lancement du Project ID API et du générateur `techdoc-bundle` (déc. 2025).
+ - **Janvier – mars 2026 — workflows et événements**
+   - Workflow de statut des contrats, compte brouillon et workflow de compte, pays et états, filtres par compte/contrat.
+   - Table outbox transactionnelle et événements de comptes, titulaire du compte et création d'utilisateur, règles d'activation.
+   - Serveur OAuth2 local `security-dev-server` (jan. 2026).
+ - **Avril – juin 2026 — sécurité et import massif**
+   - Authentification JWT/JWKS humains et machines, contrôle d'audience et de scope (`2026-04-02`).
+   - Import massif de comptes et contrats : job Argo CD, bucket GCS, lecture XLSX avec OpenSpout, validation et traitement (`2026-04-13` → `2026-06-05`).
+   - Migration de toutes les collections Bruno de `.bru` vers YAML (`2026-06-08`).
+   - Calcul du share initial d'un projet, authentification d'un système partenaire depuis le worker.
+ - **Juillet – septembre 2026 — Kafka, bundles et OpenTelemetry**
+   - PoC outbox → Debezium → Kafka (`2026-08-07`), Symfony Messenger ↔ Kafka (`2026-08-19`), consommateurs d'événements Release/Recording (`2026-09-21`).
+   - Mise à jour en masse du share sur releases et tracks (`2026-09-30`).
+   - Création de deux paquets d'auto-instrumentation OpenTelemetry (API Platform, Symfony Security), déployés sur les API CAM.
+   - Correction de vulnérabilités sur plusieurs dépôts, nginx 1.31 sur 4 services.
+   - Création de `job-orchestrator-bundle`, `security-bundle` et `control-room` (août – octobre 2026).
+ - **Octobre – novembre 2026**
+   - Authentification Okta pour cam-orchestrator (`2026-10-14`) et interface d'import massif.
+   - Montée de version PHP 8.5 / Symfony 7.4 et migration des JWT ADB2C vers Auth0 M2M sur MyServices Legal Center API.
+   - Correction de l'erreur 500 sur contrainte d'unicité après suppression de réserves (`2026-11-13`).
+
+Initiatives portées au-delà du backlog: 9 dépôts partagés créés (security-bundle, security-dev-server, job-orchestrator-bundle, techdoc-bundle, control-room, auto-instrumentation OpenTelemetry), standardisation de la sécurité, des badges de documentation et des montées de version sur une douzaine de dépôts, parité local/Kubernetes du `compose.yaml`.
