@@ -5,6 +5,10 @@ const { rows, paths, yearMarks, sentinelTop, masterX, missions, graphWidth, heig
 const SLIDE = true; // glissement de l'arbre (étape 2) : mettre false pour garder l'arbre centré
 import '../styles/theme.css';
 const maxYears = 12.5;
+// vue mobile monobranche : une étiquette d'année avant la première carte de chaque année
+let lastYear = null;
+const mobileYear = new Map();
+rows.forEach((r, i) => { if (!r.cards.length) return; const y = new Date(r.c.date).getUTCFullYear(); if (y !== lastYear) { mobileYear.set(i, y); lastYear = y; } });
 const labelOf = (m, role) => role === 'start' ? `DÉBUT · ${fmtDate(m.startDate)}` : (m.ongoing ? 'EN COURS' : `FIN · ${fmtDate(m.endDate)}`);
 ---
 <!doctype html>
@@ -86,10 +90,11 @@ const labelOf = (m, role) => role === 'start' ? `DÉBUT · ${fmtDate(m.startDate
       {yearMarks.map((y) => (
         <span class="year-pill" style={`top:${y.top}px;--x:${masterX}px`}>{y.year}</span>
       ))}
-      {rows.map((r) => (
+      {rows.map((r, i) => (
         r.cards.length ? (
-          r.cards.map((m) => (
+          r.cards.map((m, k) => (
             <>
+              {k === 0 && mobileYear.has(i) && <span class="ylabel" aria-hidden="true">{mobileYear.get(i)}</span>}
               <i class={`conn ${m.side}`} style={`top:${r.y - 1}px;--x:${r.x}px;--c:${m.color}`}></i>
               <article class={`card ${m.side}`} data-id={m.id} tabindex="0" role="button" aria-label={`Détails : ${m.title}`}
                 style={`top:${r.top}px;--c:${m.color}`}>
