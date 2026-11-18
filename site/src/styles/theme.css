@@ -1,4 +1,4 @@
-/* ───────── Thèmes ─────────  light (défaut) · dark · dev (terminal)  — choisis via <html data-theme="…"> */
+/* ───────── Thèmes ─────────  light · dark · dev (terminal, défaut — voir le script de index.astro)  — choisis via <html data-theme="…"> */
 :root, :root[data-theme="light"] {
   color-scheme: light;
   --bg:#F6F7FB; --card:#fff; --text:#0F172A; --text2:#475569; --text3:#334155; --muted:#64748B; --faint:#94A3B8; --line:#E8EAF2;
