@@ -156,7 +156,10 @@ h1 { font-size:clamp(40px,7vw,76px); margin:22px 0 8px; letter-spacing:-.02em; }
 @keyframes blink { 50% { opacity:0; } }
 
 @media (max-width:900px) {
-  .card, .card.left, .card.right { position:static; width:auto; max-width:none; margin:0 0 14px 0; } .timeline { height:auto !important; padding-left:0; }
+  .timeline[data-slide] .card, .card, .card.left, .card.right { position:static; width:auto !important; max-width:none; margin:0 0 14px 0; } .timeline { height:auto !important; padding-left:0; } .stage { height:auto; }
+  .panel { max-width:none; width:100%; align-self:stretch; flex:none; }
+  .tech { max-width:none; }
+  .stats div { min-width:0; flex:1 1 140px; }
   .graph, .logline, .conn, .year-pill, .ndot { display:none; }
   .timeline[data-slide] .stage { transform:none !important; }
   .detail { flex-direction:column; padding-top:56px; } .rail { display:none; }
