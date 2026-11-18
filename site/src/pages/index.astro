@@ -1,0 +1,253 @@
+---
+import { buildCareer, fmtDate, rich } from '../lib/career.mjs';
+const career = buildCareer();
+const { rows, paths, yearMarks, sentinelTop, masterX, missions, graphWidth, height, langs, infra, stats } = career;
+const SLIDE = true; // glissement de l'arbre (étape 2) : mettre false pour garder l'arbre centré
+import '../styles/theme.css';
+const maxYears = 12.5;
+const labelOf = (m, role) => role === 'start' ? `DÉBUT · ${fmtDate(m.startDate)}` : (m.ongoing ? 'EN COURS' : `FIN · ${fmtDate(m.endDate)}`);
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anthony Moutte — parcours</title>
+  <meta name="description" content="Parcours de développeur full stack, raconté comme un historique Git." />
+  <meta name="color-scheme" content="light dark" />
+  <script is:inline>
+    (function () {
+      var t = null;
+      try { t = new URLSearchParams(location.search).get('theme') || localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark' && t !== 'dev') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <div class="blobs" aria-hidden="true"></div>
+  <div class="theme-switch" role="group" aria-label="Thème d'affichage">
+    <button type="button" data-theme-set="light" aria-pressed="false">Clair</button>
+    <button type="button" data-theme-set="dark" aria-pressed="false">Sombre</button>
+    <button type="button" data-theme-set="dev" aria-pressed="false">&lt;/&gt; Dev</button>
+  </div>
+  <header class="hero">
+    <p class="term"><span class="dot"></span> git log --graph --all --oneline</p>
+    <h1>Anthony MOUTTE</h1>
+    <p class="role">Développeur / concepteur full stack</p>
+    <p class="tag">Plus de vingt ans de parcours, racontés comme un historique Git :<br />chaque commit est une étape, chaque branche une aventure.</p>
+    <ul class="legend">
+      <li><i class="trunk"></i>master</li>
+      <li><i style="background:#14B8A6"></i>formations</li>
+      <li><i style="background:#7C3AED"></i>expériences</li>
+      <li><i style="background:#F59E0B"></i>missions SensioLabs</li>
+      <li><i style="background:#EC4899"></i>missions Eleven Labs</li>
+      <li><i style="background:#0EA5E9"></i>activité en parallèle</li>
+      <li><i class="ring"></i>commit de début</li>
+      <li><i class="solid"></i>commit de fin / en cours</li>
+    </ul>
+    <div class="stats">
+      <div><b>{stats.from} → {stats.to}</b><span>d'historique</span></div>
+      <div><b>{stats.experiences}</b><span>expériences & missions</span></div>
+      <div><b>{stats.formations}</b><span>formations & diplômes</span></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="tech" aria-label="Technologies">
+      <div>
+        <h2 class="acc-v">Langages & frameworks</h2>
+        {langs.map((t) => (
+          <div class="bar"><span>{t.n}</span><div class="track v"><div style={`width:${(t.years / maxYears) * 100}%`}></div></div><b class="v">{String(t.years).replace('.', ',')} ans</b></div>
+        ))}
+      </div>
+      <div>
+        <h2 class="acc-t">Environnement & infra</h2>
+        {infra.map((t) => (
+          <div class="bar"><span>{t.n}</span><div class="track t"><div style={`width:${(t.years / maxYears) * 100}%`}></div></div><b class="t">{String(t.years).replace('.', ',')} {t.years <= 1.5 ? 'an' : 'ans'}</b></div>
+        ))}
+      </div>
+      <p class="note">Années cumulées d'utilisation, calculées à partir des dates des commits de chaque mission.</p>
+    </section>
+
+    <section class="timeline" data-slide={SLIDE ? 'on' : 'off'} style={`height:${height}px;--gw:${graphWidth}px`}>
+     <i id="slide-sentinel" style={`position:absolute;left:50%;top:${sentinelTop}px;width:1px;height:1px;pointer-events:none`}></i>
+     <div class="stage">
+      <svg class="graph" width={graphWidth} height={height} viewBox={`0 0 ${graphWidth} ${height}`} aria-hidden="true">
+        {paths.map((p) => <path d={p.d} style={`stroke:${p.color}`} stroke-width="3" fill="none" stroke-linecap="round" />)}
+        {rows.filter((r) => !r.end && !r.start).map((r) => (
+          <circle class="node-ring" cx={r.x} cy={r.y} r="5" style={`fill:${r.color}`} stroke-width="2" />
+        ))}
+      </svg>
+      {rows.filter((r) => r.end || r.start).map((r) => (
+        <i class={`ndot ${r.end ? 'end' : 'start'}`} style={`left:calc(50% - var(--gw) / 2 + ${r.x}px);top:${r.y}px;--c:${r.color}`}
+          data-start-of={r.cards.map((m) => m.id).join(' ')} data-end-of={r.ends.map((m) => m.id).join(' ')}></i>
+      ))}
+      {yearMarks.map((y) => (
+        <span class="year-pill" style={`top:${y.top}px;--x:${masterX}px`}>{y.year}</span>
+      ))}
+      {rows.map((r) => (
+        r.cards.length ? (
+          r.cards.map((m) => (
+            <>
+              <i class={`conn ${m.side}`} style={`top:${r.y - 1}px;--x:${r.x}px;--c:${m.color}`}></i>
+              <article class={`card ${m.side}`} data-id={m.id} tabindex="0" role="button" aria-label={`Détails : ${m.title}`}
+                style={`top:${r.top}px;--c:${m.color}`}>
+                <header><span class="chip">{m.chip}</span><code>{m.startC.short}</code></header>
+                <h3>{m.title}</h3>
+                {m.subtitle && <p class="sub">{m.subtitle}</p>}
+                <p class="period">{m.period} · {m.duration}</p>
+                <p class="desc">{m.description}</p>
+                <span class="more">Voir le détail →</span>
+              </article>
+            </>
+          ))
+        ) : (
+          <p class="logline" style={`top:${r.y - 10}px`}>
+            <code>{r.c.short}</code> {r.c.subject}
+            {r.ends[0] && <em style={`--c:${r.ends[0].color}`}> · {labelOf(r.ends[0], 'end')}</em>}
+          </p>
+        )
+      ))}
+     </div>
+    </section>
+  </main>
+
+  {missions.map((m) => (
+    <section class="detail" id={`detail-${m.id}`} hidden style={`--c:${m.color}`} aria-modal="true" role="dialog" aria-label={m.title}>
+      <div class="rail" aria-hidden="true">
+        <svg viewBox="0 0 170 760" width="170" height="760">
+          <path class="trunk" d="M44 0 V760" stroke-width="4" />
+          <path d="M44 90 C44 120 110 110 110 150 V610 C110 650 44 640 44 670" style={`stroke:${m.color}`} stroke-width="4" fill="none" />
+          <rect x="103" y="190" width="14" height="420" rx="7" style={`fill:${m.color}`} opacity=".22" />
+        </svg>
+        <i class="rdot end" data-role="end"></i>
+        <i class="rdot start" data-role="start"></i>
+        <i class="rconn" data-role="conn"></i>
+        <span class="rl" style="top:178px">{labelOf(m, 'end').split(' · ').map((t) => <>{t}<br /></>)}</span>
+        <span class="rl" style="top:598px">{labelOf(m, 'start').split(' · ').map((t) => <>{t}<br /></>)}</span>
+        <span class="year" style="top:593px">{new Date(m.startDate).getUTCFullYear()}</span>
+      </div>
+      <article class="panel">
+        <button class="close" type="button" data-close>✕ Retour</button>
+        <header><span class="chip">{m.chip}</span><code>{m.startC.short}</code></header>
+        <h2>{m.title}</h2>
+        {m.subtitle && <p class="sub">{m.subtitle}</p>}
+        <p class="period">{m.period} · {m.duration}</p>
+        <p class="lead">{m.description}</p>
+        {m.team && <><h4>Équipe</h4><p>{m.team}</p></>}
+        {m.techText && <><h4>{m.kind === 'formation' ? 'Compétences' : 'Environnement technique'}</h4><p>{m.techText}</p></>}
+        {m.highlights.length > 0 && <><h4>Réalisations clés</h4><ul>{m.highlights.map((h) => <li set:html={rich(h)} />)}</ul></>}
+      </article>
+    </section>
+  ))}
+
+  <footer class="foot">Généré à partir de l'historique Git du dépôt — {career.commits.length} commits.</footer>
+
+  <script is:inline>
+    (function () {
+      var btns = document.querySelectorAll('[data-theme-set]');
+      function sync() { var t = document.documentElement.dataset.theme; btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeSet === t)); }); }
+      btns.forEach(function (b) { b.addEventListener('click', function () {
+        document.documentElement.dataset.theme = b.dataset.themeSet;
+        try { localStorage.setItem('theme', b.dataset.themeSet); } catch (e) {}
+        sync();
+      }); });
+      sync();
+    })();
+  </script>
+  <script is:inline>
+    (function () {
+      var current = null;
+      function setName(el, n) { if (el) el.style.viewTransitionName = n === 'none' ? '' : n; }
+      function run(fn) {
+        if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return document.startViewTransition(fn).finished.catch(function () {});
+        }
+        fn(); return Promise.resolve();
+      }
+      // éléments de l'arbre rattachés à une mission : { card, conn, dot (début), end (fin) } côté page, { panel, ... } côté détail
+      function treeOf(id) {
+        var card = document.querySelector('.card[data-id="' + id + '"]');
+        var prev = card && card.previousElementSibling;
+        function dot(attr) {
+          var all = document.querySelectorAll('[' + attr + ']');
+          for (var i = 0; i < all.length; i++) { if ((all[i].getAttribute(attr) || '').split(' ').indexOf(id) >= 0) return all[i]; }
+          return null;
+        }
+        var detail = document.getElementById('detail-' + id);
+        return {
+          page: { card: card, conn: prev && prev.classList.contains('conn') ? prev : null, start: dot('data-start-of'), end: dot('data-end-of') },
+          view: detail && { panel: detail.querySelector('.panel'), conn: detail.querySelector('[data-role=conn]'), start: detail.querySelector('[data-role=start]'), end: detail.querySelector('[data-role=end]') },
+          detail: detail
+        };
+      }
+      function label(group, on) {   // nomme (ou dénomme) les éléments d'un côté pour la transition partagée
+        setName(group.card || group.panel, on ? 'mission' : 'none');
+        setName(group.conn, on ? 'm-conn' : 'none');
+        setName(group.start, on ? 'm-start' : 'none');
+        setName(group.end, on ? 'm-end' : 'none');
+      }
+      function open(id) {
+        var t = treeOf(id);
+        if (!t.page.card || !t.detail) return;
+        current = t;
+        label(t.page, true);
+        run(function () {
+          label(t.page, false);
+          t.detail.hidden = false;
+          document.documentElement.classList.add('modal');
+          label(t.view, true);
+          t.detail.scrollTop = 0;
+          t.detail.querySelector('.close').focus({ preventScroll: true });
+        }).then(function () { label(t.view, false); });
+      }
+      function close() {
+        if (!current) return;
+        var t = current; current = null;
+        label(t.view, true);
+        run(function () {
+          label(t.view, false);
+          t.detail.hidden = true;
+          document.documentElement.classList.remove('modal');
+          label(t.page, true);
+        }).then(function () { label(t.page, false); if (t.page.card) t.page.card.focus({ preventScroll: true }); });
+      }
+      // glissement de l'arbre : à gauche pour les missions récentes, au centre quand les formations arrivent
+      var tl = document.querySelector('.timeline'), sen = document.getElementById('slide-sentinel');
+      var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!tl || !sen || calm || tl.dataset.slide === 'off') { if (tl) tl.classList.add('centered'); }
+      else {
+        var ticking = false;
+        var update = function () {
+          ticking = false;
+          tl.classList.toggle('centered', sen.getBoundingClientRect().top < window.innerHeight * 0.7);
+        };
+        var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('resize', onScroll);
+        update();
+      }
+      // lien direct : /#tf1 ouvre le détail de la mission (sans animation)
+      var h = location.hash.slice(1);
+      if (h && document.getElementById('detail-' + h)) {
+        var d = document.getElementById('detail-' + h);
+        d.hidden = false; document.documentElement.classList.add('modal');
+        current = treeOf(h);
+      }
+      document.addEventListener('click', function (e) {
+        var card = e.target.closest('.card');
+        if (card) return open(card.dataset.id);
+        if (e.target.closest('[data-close]')) return close();
+        // clic sur le fond (arbre, marges) en dehors du panneau : retour
+        if (current && e.target.closest('.detail') && !e.target.closest('.panel')) close();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') close();
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card')) { e.preventDefault(); open(e.target.dataset.id); }
+      });
+    })();
+  </script>
+</body>
+</html>
+
